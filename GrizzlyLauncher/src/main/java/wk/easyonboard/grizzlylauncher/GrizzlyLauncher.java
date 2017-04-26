@@ -1,16 +1,17 @@
 package wk.easyonboard.grizzlylauncher;
 
 
-import com.google.common.collect.Sets;
 import com.owlike.genson.ext.jaxrs.GensonJsonConverter;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import wk.easyonboard.adminservice.AdminService;
 import wk.easyonboard.common.Launchable;
 
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -34,7 +35,10 @@ public class GrizzlyLauncher {
     }
 
     private Set<Class<? extends Launchable>> provideServices() {
-        return Sets.newHashSet();
+        Set<Class<? extends Launchable>> services = new HashSet<Class<? extends Launchable>>();
+        services.add(AdminService.class);
+
+        return services;
     }
 
     private void startServices(Set<Class<? extends Launchable>> services) throws InstantiationException, IllegalAccessException, IOException {
