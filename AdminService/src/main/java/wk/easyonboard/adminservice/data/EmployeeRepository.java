@@ -9,6 +9,7 @@ import wk.easyonboard.common.dataaccess.Repository;
 import wk.easyonboard.common.datatransfer.EmployeeRole;
 import wk.easyonboard.common.datatransfer.UserRole;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -43,6 +44,8 @@ public class EmployeeRepository extends Repository<Employee> {
             employee.setEmployeeRole(EmployeeRole.employee);
             employee.setEmployeeAddress(address);
             employee.setUserRole(UserRole.user);
+            employee.setEntersOn(LocalDate.now().minusYears(5 * i));
+            employee.setLeavesOn(LocalDate.now().plusYears(i * 10));
 
             employees.add(employee);
         }

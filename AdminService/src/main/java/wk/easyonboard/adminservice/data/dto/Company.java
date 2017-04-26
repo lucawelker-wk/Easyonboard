@@ -11,6 +11,15 @@ public class Company {
     public UUID id;
     public String name;
     public Address adress;
+    public String avatarUrl;
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
 
     public UUID getId() {
         return id;
@@ -41,6 +50,7 @@ public class Company {
         company.setAdress(Address.fromServerDTO(data.getAdress()));
         company.setId(data.getId());
         company.setName(data.getName());
+        company.setAvatarUrl(data.getAvatarUrl());
 
         return company;
     }
@@ -50,6 +60,7 @@ public class Company {
         companyDTO.setId(this.getId());
         companyDTO.setAdress(this.getAdress().toServerDTO());
         companyDTO.setName(this.getName());
+        companyDTO.setAvatarUrl(this.getAvatarUrl());
 
         return companyDTO;
     }

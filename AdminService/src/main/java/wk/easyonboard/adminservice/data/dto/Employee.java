@@ -4,6 +4,7 @@ import wk.easyonboard.common.datatransfer.EmployeeDTO;
 import wk.easyonboard.common.datatransfer.EmployeeRole;
 import wk.easyonboard.common.datatransfer.UserRole;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 /**
@@ -18,6 +19,33 @@ public class Employee {
     public String Username;
     public String Email;
     public UserRole UserRole;
+    public LocalDate entersOn;
+    public LocalDate leavesOn;
+    public String avatarUrl;
+
+    public LocalDate getEntersOn() {
+        return entersOn;
+    }
+
+    public void setEntersOn(LocalDate entersOn) {
+        this.entersOn = entersOn;
+    }
+
+    public LocalDate getLeavesOn() {
+        return leavesOn;
+    }
+
+    public void setLeavesOn(LocalDate leavesOn) {
+        this.leavesOn = leavesOn;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
 
     public UUID getId() {
         return Id;
@@ -93,6 +121,9 @@ public class Employee {
         employee.setLastName(data.getLastName());
         employee.setUsername(data.getUsername());
         employee.setUserRole(data.getUserRole());
+        employee.setLeavesOn(data.getLeavesOn());
+        employee.setEntersOn(data.getEntersOn());
+        employee.setAvatarUrl(data.getAvatarUrl());
 
         return employee;
     }
@@ -108,6 +139,9 @@ public class Employee {
         result.setEmployeeRole(this.getEmployeeRole());
         result.setAdress(this.getEmployeeAddress().toServerDTO());
         result.setUserRole(this.getUserRole());
+        result.setLeavesOn(this.getLeavesOn());
+        result.setEntersOn(this.getEntersOn());
+        result.setAvatarUrl(this.getAvatarUrl());
 
         return result;
     }

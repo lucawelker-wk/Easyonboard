@@ -12,7 +12,16 @@ import java.util.UUID;
 public class CompanyUnit {
     public UUID id;
     public String name;
+    public UUID companyId;
     public List<EmployeeDTO> manager;
+
+    public UUID getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(UUID companyId) {
+        this.companyId = companyId;
+    }
 
     public UUID getId() {
         return id;
@@ -43,6 +52,7 @@ public class CompanyUnit {
         result.setId(data.getId());
         result.setManager(data.getManager());
         result.setName(data.getName());
+        result.setCompanyId(data.getCompanyId());
 
         return result;
     }
@@ -52,6 +62,7 @@ public class CompanyUnit {
         result.setId(this.getId());
         result.setManager(this.getManager());
         result.setName(this.getName());
+        result.setCompanyId(this.getCompanyId());
 
         return result;
     }
