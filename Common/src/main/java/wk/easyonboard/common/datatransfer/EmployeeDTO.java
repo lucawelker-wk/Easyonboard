@@ -1,5 +1,9 @@
 package wk.easyonboard.common.datatransfer;
 
+import com.owlike.genson.annotation.JsonProperty;
+import wk.easyonboard.common.typadapter.LocaleDateXmlTypeAdapter;
+
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -16,7 +20,11 @@ public class EmployeeDTO {
     private String username;
     private String email;
     private UserRole userRole;
+    @JsonProperty
+    @XmlJavaTypeAdapter(LocaleDateXmlTypeAdapter.class)
     private LocalDate entersOn;
+    @JsonProperty
+    @XmlJavaTypeAdapter(LocaleDateXmlTypeAdapter.class)
     private LocalDate leavesOn;
     private String avatarUrl;
 

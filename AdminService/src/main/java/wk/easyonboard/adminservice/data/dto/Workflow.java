@@ -47,4 +47,15 @@ public class Workflow {
 
         return result;
     }
+
+    public static final Workflow fromServerDTO(WorkflowDTO data) {
+        Workflow workflow = new Workflow();
+        workflow.setId(data.getId());
+        workflow.setName(data.getName());
+        workflow.setItems(data.getItems().stream()
+                .map(i -> WorkflowItem.fromServerDTO(i))
+                .collect(Collectors.toList()));
+
+        return workflow;
+    }
 }

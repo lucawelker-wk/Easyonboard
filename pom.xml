@@ -21,6 +21,7 @@
         <module>GrizzlyLauncher</module>
         <module>AdminService</module>
         <module>Common</module>
+        <module>Gateway</module>
     </modules>
 
     <dependencies>

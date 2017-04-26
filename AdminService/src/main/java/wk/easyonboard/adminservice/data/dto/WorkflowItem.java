@@ -65,4 +65,15 @@ public class WorkflowItem {
 
         return result;
     }
+
+    public final static WorkflowItem fromServerDTO(WorkflowItemDTO data) {
+        WorkflowItem result = new WorkflowItem();
+        result.setDescription(data.getDescription());
+        result.setId(data.getId());
+        result.setName(data.getName());
+        result.setParameters(data.getParameters());
+        result.setType(data.getType());
+
+        return result;
+    }
 }
