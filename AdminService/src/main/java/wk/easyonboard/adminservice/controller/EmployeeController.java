@@ -1,12 +1,13 @@
 package wk.easyonboard.adminservice.controller;
 
-import wk.easyonboard.adminservice.data.EmployeeRepository;
+import wk.easyonboard.adminservice.RepositoryCache;
 import wk.easyonboard.adminservice.data.dto.Employee;
 import wk.easyonboard.common.datatransfer.EmployeeDTO;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -14,16 +15,10 @@ import java.util.stream.Collectors;
  */
 @Path("/employees")
 public class EmployeeController {
-    private EmployeeRepository repository;
-
-    public EmployeeController() {
-        repository = new EmployeeRepository();
-    }
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<EmployeeDTO> getEmployees() {
-        final List<Employee> employees = repository.readAll();
+        final List<Employee> employees = RepositoryCache.getEmployeeRepository().readAll();
 
         return employees.stream()
                 .map(x -> x.toServerDTO()).collect(Collectors.toList());
@@ -32,6 +27,7 @@ public class EmployeeController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean createEmployee(EmployeeDTO employee) throws IllegalAccessException {
-        return repository.create(Employee.fromServerDTO(employee));
+        employee.setId(UUID.randomUUID());
+        return RepositoryCache.getEmployeeRepository().create(Employee.fromServerDTO(employee));
     }
 }

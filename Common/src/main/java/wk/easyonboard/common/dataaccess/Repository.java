@@ -46,7 +46,7 @@ public abstract class Repository<T> {
     }
 
     public boolean create(T data) throws IllegalAccessException {
-        if (data != null)
+        if (data == null)
             return true;
 
         final Map<String, Object> stringObjectMap = mapper.mapToMap(data);

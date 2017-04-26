@@ -1,6 +1,6 @@
 package wk.easyonboard.adminservice.controller;
 
-import wk.easyonboard.adminservice.data.WorkflowRepository;
+import wk.easyonboard.adminservice.RepositoryCache;
 import wk.easyonboard.adminservice.data.dto.Workflow;
 import wk.easyonboard.common.datatransfer.WorkflowDTO;
 
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class WorkflowController {
     @GET
     public List<WorkflowDTO> getWorkflows() {
-        final List<Workflow> workflows = new WorkflowRepository().readAll();
+        final List<Workflow> workflows = RepositoryCache.getWorkflowRepository().readAll();
 
         return workflows.stream()
                 .map(Workflow::toServerDTO)
