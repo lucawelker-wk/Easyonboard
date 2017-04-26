@@ -56,10 +56,23 @@ public class EmployeeRepository extends Repository<Employee> {
         manager.setLastName("Manager");
         manager.setUsername("hans.manager");
         manager.setEmail(String.format("klaus.manager@easyonboard.de"));
-        manager.setEmployeeRole(EmployeeRole.employee);
+        manager.setEmployeeRole(EmployeeRole.manager);
         manager.setEmployeeAddress(address);
         manager.setUserRole(UserRole.admin);
+        manager.setEntersOn(LocalDate.of(1990, 01, 15));
         employees.add(manager);
+
+        Employee notEnteredYet = new Employee();
+        notEnteredYet.setId(UUID.randomUUID());
+        notEnteredYet.setFirstName("Klaus");
+        notEnteredYet.setLastName("NotEntered");
+        notEnteredYet.setUsername("klaus.notentered");
+        notEnteredYet.setEmail(String.format("klaus.notentered@easyonboard.de"));
+        notEnteredYet.setEmployeeRole(EmployeeRole.employee);
+        notEnteredYet.setEmployeeAddress(address);
+        notEnteredYet.setUserRole(UserRole.user);
+        notEnteredYet.setEntersOn(LocalDate.of(2017, 05, 01));
+        employees.add(notEnteredYet);
 
         return new DummyContext<>(employees, Employee.class);
     }
