@@ -9,6 +9,8 @@ public abstract class Launchable {
     private Set<Class<?>> resources;
 
     public Set<Class<?>> getResources() {
+        if (resources == null)
+            resources = provideResources();
         return resources;
     }
 
