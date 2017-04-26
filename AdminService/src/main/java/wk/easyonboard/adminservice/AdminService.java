@@ -1,6 +1,7 @@
 package wk.easyonboard.adminservice;
 
 import wk.easyonboard.adminservice.controller.EmployeeController;
+import wk.easyonboard.adminservice.controller.WorkflowController;
 import wk.easyonboard.common.Launchable;
 import wk.easyonboard.common.ServiceConstants;
 
@@ -14,6 +15,7 @@ public class AdminService extends Launchable {
     protected Set<Class<?>> provideResources() {
         Set<Class<?>> resources = new HashSet<Class<?>>();
         resources.add(EmployeeController.class);
+        resources.add(WorkflowController.class);
 
         return resources;
     }
