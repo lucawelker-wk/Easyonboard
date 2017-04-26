@@ -36,4 +36,9 @@ public class DummyContext<T> extends DbContext {
     public List<Map<String, Object>> readAll() {
         return data;
     }
+
+    @Override
+    public boolean create(Map<String, Object> data) {
+        return this.data.add(data);
+    }
 }

@@ -13,7 +13,7 @@ public class Employee {
     public UUID Id;
     public String LastName;
     public String FirstName;
-    public Address Address;
+    public Address EmployeeAddress;
     public EmployeeRole EmployeeRole;
     public String Username;
     public String Email;
@@ -51,12 +51,12 @@ public class Employee {
         this.EmployeeRole = employeeRole;
     }
 
-    public Address getAddress() {
-        return Address;
+    public Address getEmployeeAddress() {
+        return EmployeeAddress;
     }
 
-    public void setAddress(Address address) {
-        this.Address = address;
+    public void setEmployeeAddress(Address employeeAddress) {
+        this.EmployeeAddress = employeeAddress;
     }
 
     public String getUsername() {
@@ -83,6 +83,20 @@ public class Employee {
         this.UserRole = userRole;
     }
 
+    public static final Employee fromServerDTO(EmployeeDTO data) {
+        final Employee employee = new Employee();
+        employee.setEmployeeAddress(Address.fromServerDTO(data.getAdress()));
+        employee.setEmail(data.getEmail());
+        employee.setEmployeeRole(data.getEmployeeRole());
+        employee.setFirstName(data.getFirstName());
+        employee.setId(data.getId());
+        employee.setLastName(data.getLastName());
+        employee.setUsername(data.getUsername());
+        employee.setUserRole(data.getUserRole());
+
+        return employee;
+    }
+
     public final EmployeeDTO toServerDTO() {
         final EmployeeDTO result = new EmployeeDTO();
 
@@ -92,7 +106,7 @@ public class Employee {
         result.setUsername(this.getUsername());
         result.setEmail(this.getEmail());
         result.setEmployeeRole(this.getEmployeeRole());
-        result.setAdress(this.getAddress().toServerDTO());
+        result.setAdress(this.getEmployeeAddress().toServerDTO());
         result.setUserRole(this.getUserRole());
 
         return result;

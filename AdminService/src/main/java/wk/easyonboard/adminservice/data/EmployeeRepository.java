@@ -41,7 +41,7 @@ public class EmployeeRepository extends Repository<Employee> {
             employee.setUsername("Username " + i);
             employee.setEmail(String.format("user%s@easyonboard.de", i));
             employee.setEmployeeRole(EmployeeRole.employee);
-            employee.setAddress(address);
+            employee.setEmployeeAddress(address);
             employee.setUserRole(UserRole.user);
 
             employees.add(employee);
@@ -54,7 +54,7 @@ public class EmployeeRepository extends Repository<Employee> {
         manager.setUsername("hans.manager");
         manager.setEmail(String.format("klaus.manager@easyonboard.de"));
         manager.setEmployeeRole(EmployeeRole.employee);
-        manager.setAddress(address);
+        manager.setEmployeeAddress(address);
         manager.setUserRole(UserRole.admin);
         employees.add(manager);
 

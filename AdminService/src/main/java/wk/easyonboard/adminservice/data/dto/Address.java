@@ -52,6 +52,17 @@ public class Address {
         this.Country = country;
     }
 
+    public static final Address fromServerDTO(AdressDTO address) {
+        final Address tmp = new Address();
+        tmp.setCity(address.getCity());
+        tmp.setCountry(address.getCountry());
+        tmp.setState(address.getState());
+        tmp.setStreet(address.getStreet());
+        tmp.setZipCode(address.getZipCode());
+
+        return tmp;
+    }
+
     public final AdressDTO toServerDTO() {
         AdressDTO address = new AdressDTO();
         address.setCity(this.getCity());

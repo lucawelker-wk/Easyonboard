@@ -45,8 +45,12 @@ public abstract class Repository<T> {
                 .collect(Collectors.toList());
     }
 
-    public boolean create(T data) {
-        throw new NotImplementedException();
+    public boolean create(T data) throws IllegalAccessException {
+        if (data != null)
+            return true;
+
+        final Map<String, Object> stringObjectMap = mapper.mapToMap(data);
+        return context.create(stringObjectMap);
     }
 
     public boolean update(T data, Map<String, Object> keys) {
