@@ -10,32 +10,32 @@ import java.util.stream.Collectors;
  * Created by Luca Welker on 4/26/17.
  */
 public class Workflow {
-    private UUID id;
-    private String name;
-    private List<WorkflowItem> items;
+    public UUID Id;
+    public String Name;
+    public List<WorkflowItem> Items;
 
     public UUID getId() {
-        return id;
+        return Id;
     }
 
     public void setId(UUID id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
 
     public List<WorkflowItem> getItems() {
-        return items;
+        return Items;
     }
 
     public void setItems(List<WorkflowItem> items) {
-        this.items = items;
+        this.Items = items;
     }
 
     public final WorkflowDTO toServerDTO() {

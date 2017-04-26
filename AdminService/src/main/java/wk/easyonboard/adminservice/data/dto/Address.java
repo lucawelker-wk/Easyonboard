@@ -6,50 +6,50 @@ import wk.easyonboard.common.datatransfer.AdressDTO;
  * Created by Luca Welker on 4/26/17.
  */
 public class Address {
-    private String street;
-    private String zipCode;
-    private String city;
-    private String state;
-    private String country;
+    public String Street;
+    public String ZipCode;
+    public String City;
+    public String State;
+    public String Country;
 
     public String getStreet() {
-        return street;
+        return Street;
     }
 
     public void setStreet(String street) {
-        this.street = street;
+        this.Street = street;
     }
 
     public String getZipCode() {
-        return zipCode;
+        return ZipCode;
     }
 
     public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+        this.ZipCode = zipCode;
     }
 
     public String getCity() {
-        return city;
+        return City;
     }
 
     public void setCity(String city) {
-        this.city = city;
+        this.City = city;
     }
 
     public String getState() {
-        return state;
+        return State;
     }
 
     public void setState(String state) {
-        this.state = state;
+        this.State = state;
     }
 
     public String getCountry() {
-        return country;
+        return Country;
     }
 
     public void setCountry(String country) {
-        this.country = country;
+        this.Country = country;
     }
 
     public final AdressDTO toServerDTO() {

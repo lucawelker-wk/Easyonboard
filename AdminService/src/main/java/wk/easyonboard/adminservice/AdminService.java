@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by wkss on 4/26/17.
+ * Created by Luca Welker on 4/26/17.
  */
 public class AdminService extends Launchable {
     protected Set<Class<?>> provideResources() {

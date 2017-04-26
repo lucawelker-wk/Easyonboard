@@ -10,77 +10,77 @@ import java.util.UUID;
  * Created by Luca Welker on 4/26/17.
  */
 public class Employee {
-    private UUID id;
-    private String lastName;
-    private String firstName;
-    private Address adress;
-    private EmployeeRole employeeRole;
-    private String username;
-    private String email;
-    private UserRole userRole;
+    public UUID Id;
+    public String LastName;
+    public String FirstName;
+    public Address Address;
+    public EmployeeRole EmployeeRole;
+    public String Username;
+    public String Email;
+    public UserRole UserRole;
 
     public UUID getId() {
-        return id;
+        return Id;
     }
 
     public void setId(UUID id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getLastName() {
-        return lastName;
+        return LastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.LastName = lastName;
     }
 
     public String getFirstName() {
-        return firstName;
+        return FirstName;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.FirstName = firstName;
     }
 
     public EmployeeRole getEmployeeRole() {
-        return employeeRole;
+        return EmployeeRole;
     }
 
     public void setEmployeeRole(EmployeeRole employeeRole) {
-        this.employeeRole = employeeRole;
+        this.EmployeeRole = employeeRole;
     }
 
-    public Address getAdress() {
-        return adress;
+    public Address getAddress() {
+        return Address;
     }
 
-    public void setAdress(Address adress) {
-        this.adress = adress;
+    public void setAddress(Address address) {
+        this.Address = address;
     }
 
     public String getUsername() {
-        return username;
+        return Username;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.Username = username;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.Email = email;
     }
 
     public UserRole getUserRole() {
-        return userRole;
+        return UserRole;
     }
 
     public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+        this.UserRole = userRole;
     }
 
     public final EmployeeDTO toServerDTO() {
@@ -92,7 +92,7 @@ public class Employee {
         result.setUsername(this.getUsername());
         result.setEmail(this.getEmail());
         result.setEmployeeRole(this.getEmployeeRole());
-        result.setAdress(this.getAdress().toServerDTO());
+        result.setAdress(this.getAddress().toServerDTO());
         result.setUserRole(this.getUserRole());
 
         return result;

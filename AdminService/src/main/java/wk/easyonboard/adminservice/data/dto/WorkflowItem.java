@@ -9,50 +9,50 @@ import java.util.UUID;
  * Created by Luca Welker on 4/26/17.
  */
 public class WorkflowItem {
-    private UUID id;
-    private String name;
-    private String description;
-    private String type;
-    private Map<String, String> parameters;
+    public UUID Id;
+    public String Name;
+    public String Description;
+    public String Type;
+    public Map<String, String> Parameters;
 
     public UUID getId() {
-        return id;
+        return Id;
     }
 
     public void setId(UUID id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
 
     public String getDescription() {
-        return description;
+        return Description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.Description = description;
     }
 
     public String getType() {
-        return type;
+        return Type;
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.Type = type;
     }
 
     public Map<String, String> getParameters() {
-        return parameters;
+        return Parameters;
     }
 
     public void setParameters(Map<String, String> parameters) {
-        this.parameters = parameters;
+        this.Parameters = parameters;
     }
 
     public final WorkflowItemDTO toServerDTO() {

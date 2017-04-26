@@ -3,6 +3,8 @@ package wk.easyonboard.adminservice.data;
 import com.google.common.collect.ImmutableMap;
 import wk.easyonboard.adminservice.data.dto.Address;
 import wk.easyonboard.adminservice.data.dto.Employee;
+import wk.easyonboard.common.dataaccess.DbContext;
+import wk.easyonboard.common.dataaccess.DummyContext;
 import wk.easyonboard.common.dataaccess.Repository;
 import wk.easyonboard.common.datatransfer.EmployeeRole;
 import wk.easyonboard.common.datatransfer.UserRole;
@@ -15,14 +17,14 @@ import java.util.UUID;
  * Created by luca.welker on 4/26/17.
  */
 public class EmployeeRepository extends Repository<Employee> {
-    private List<Employee> employees;
 
     public EmployeeRepository() {
-        initData();
+        super(Employee.class);
     }
 
-    private void initData() {
-        employees = new ArrayList<Employee>();
+    @Override
+    protected DbContext initializeContext() {
+        List<Employee> employees = new ArrayList<Employee>();
 
         Address address = new Address();
         address.setCity("Bretten");
@@ -39,7 +41,7 @@ public class EmployeeRepository extends Repository<Employee> {
             employee.setUsername("Username " + i);
             employee.setEmail(String.format("user%s@easyonboard.de", i));
             employee.setEmployeeRole(EmployeeRole.employee);
-            employee.setAdress(address);
+            employee.setAddress(address);
             employee.setUserRole(UserRole.user);
 
             employees.add(employee);
@@ -52,16 +54,18 @@ public class EmployeeRepository extends Repository<Employee> {
         manager.setUsername("hans.manager");
         manager.setEmail(String.format("klaus.manager@easyonboard.de"));
         manager.setEmployeeRole(EmployeeRole.employee);
-        manager.setAdress(address);
+        manager.setAddress(address);
         manager.setUserRole(UserRole.admin);
         employees.add(manager);
+
+        return new DummyContext<>(employees, Employee.class);
     }
 
     public Employee read(UUID userId) {
-        return read(ImmutableMap.of("id", userId.toString()));
+        return read(ImmutableMap.of("Id", userId.toString()));
     }
 
     public List<Employee> readAll() {
-        return employees;
+        return super.readAll();
     }
 }
