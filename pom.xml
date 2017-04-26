@@ -15,6 +15,7 @@
 
     <modules>
         <module>GrizzlyLauncher</module>
+        <module>AdminService</module>
         <module>Common</module>
     </modules>
 
