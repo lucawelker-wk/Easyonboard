@@ -1,40 +1,31 @@
 package wk.easyonboard.gateway.controller;
 
-import wk.easyonboard.common.datatransfer.WorkflowDTO;
-
 import javax.ws.rs.*;
 import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.util.List;
+import javax.ws.rs.core.MultivaluedHashMap;
+import javax.ws.rs.core.MultivaluedMap;
+import java.util.UUID;
 
 /**
  * Created by Luca Welker on 4/26/17.
  */
-@Path("/api/workflows")
+@Path("/api/workflow")
 public class WorkflowClientController extends BaseClientController {
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<WorkflowDTO> getWorkflows() {
-        return buildAdminClient()
-                .path("workflows")
-                .request(MediaType.APPLICATION_JSON_TYPE)
-                .buildGet()
-                .invoke(new GenericType<List<WorkflowDTO>>() {
-                });
-    }
-
+    @Path("/start")
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public boolean createWorkflow(WorkflowDTO workflow) {
-        Response response = buildAdminClient()
-                .path("workflows")
-                .request(MediaType.APPLICATION_JSON_TYPE)
-                .buildPost(Entity.entity(workflow, MediaType.APPLICATION_JSON_TYPE))
-                .invoke();
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public UUID startWorkflow(@FormParam("workflowId")UUID workflowId, @FormParam("employeeId") UUID employeeId) {
+        MultivaluedMap formData = new MultivaluedHashMap();
+        formData.add("workflowId", workflowId.toString());
+        formData.add("employeeId", employeeId.toString());
 
-        return response.getStatusInfo().getStatusCode() == 200;
+        return buildWorkflowClient()
+                .path("workflow")
+                .path("start")
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .buildPost(Entity.form(formData))
+                .invoke(UUID.class);
     }
 }

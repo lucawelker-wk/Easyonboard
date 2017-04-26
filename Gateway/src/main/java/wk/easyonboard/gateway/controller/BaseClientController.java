@@ -18,6 +18,10 @@ public abstract class BaseClientController {
         return buildClient(ServiceConstants.ADMINSERVICE_PORT);
     }
 
+    protected WebTarget buildWorkflowClient() {
+        return buildClient(ServiceConstants.WORKFLOWSERVICE_PORT);
+    }
+
     private WebTarget buildClient(int port) {
         ClientConfig config = new ClientConfig(GensonJsonConverter.class);
         return ClientBuilder.newClient(config)
