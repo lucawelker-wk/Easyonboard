@@ -8,6 +8,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import wk.easyonboard.adminservice.AdminService;
 import wk.easyonboard.common.Launchable;
 import wk.easyonboard.gateway.Gateway;
+import wk.easyonboard.workflowservice.WorkflowService;
 
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
@@ -27,7 +28,6 @@ public class GrizzlyLauncher {
 
         final GrizzlyLauncher grizzlyLauncher = new GrizzlyLauncher();
         try {
-            grizzlyLauncher.startVaadinEndpoint();
             grizzlyLauncher.startServices(grizzlyLauncher.provideServices());
         } catch (InstantiationException e) {
             e.printStackTrace();
@@ -42,6 +42,7 @@ public class GrizzlyLauncher {
         Set<Class<? extends Launchable>> services = new HashSet<Class<? extends Launchable>>();
         services.add(AdminService.class);
         services.add(Gateway.class);
+        services.add(WorkflowService.class);
         return services;
     }
 
@@ -64,9 +65,5 @@ public class GrizzlyLauncher {
 
         HttpServer server = GrizzlyHttpServerFactory.createHttpServer(host, config);
         return server;
-    }
-
-    private void startVaadinEndpoint() {
-
     }
 }
