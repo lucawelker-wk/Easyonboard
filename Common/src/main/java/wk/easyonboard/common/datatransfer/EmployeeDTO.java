@@ -1,5 +1,6 @@
 package wk.easyonboard.common.datatransfer;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 /**
@@ -7,6 +8,7 @@ import java.util.UUID;
  */
 public class EmployeeDTO {
     private UUID id;
+    private UUID companyUnitId;
     private String lastName;
     private String firstName;
     private AdressDTO adress;
@@ -14,6 +16,9 @@ public class EmployeeDTO {
     private String username;
     private String email;
     private UserRole userRole;
+    private LocalDate entersOn;
+    private LocalDate leavesOn;
+    private String avatarUrl;
 
     public UUID getId() {
         return id;
@@ -21,6 +26,14 @@ public class EmployeeDTO {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public UUID getCompanyUnitId() {
+        return companyUnitId;
+    }
+
+    public void setCompanyUnitId(UUID companyUnitId) {
+        this.companyUnitId = companyUnitId;
     }
 
     public String getLastName() {
@@ -77,6 +90,30 @@ public class EmployeeDTO {
 
     public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
+    }
+
+    public LocalDate getEntersOn() {
+        return entersOn;
+    }
+
+    public void setEntersOn(LocalDate entersOn) {
+        this.entersOn = entersOn;
+    }
+
+    public LocalDate getLeavesOn() {
+        return leavesOn;
+    }
+
+    public void setLeavesOn(LocalDate leavesOn) {
+        this.leavesOn = leavesOn;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }
 

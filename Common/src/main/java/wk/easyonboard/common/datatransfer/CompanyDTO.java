@@ -9,6 +9,7 @@ public class CompanyDTO {
     private UUID id;
     private String name;
     private AdressDTO adress;
+    private String avatarUrl;
 
     public UUID getId() {
         return id;
@@ -32,5 +33,13 @@ public class CompanyDTO {
 
     public void setAdress(AdressDTO adress) {
         this.adress = adress;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }
