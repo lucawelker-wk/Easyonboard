@@ -26,20 +26,24 @@ public class WorkflowRepository extends Repository<Workflow> {
         Workflow flow = new Workflow();
         flow.setItems(new ArrayList<>());
         flow.setId(UUID.randomUUID());
-        flow.setName("Test Workflow");
+        flow.setName("Developer workflow");
 
-        for (int i = 1; i <= 10; ++i) {
-            WorkflowItem item = new WorkflowItem();
-            item.setId(UUID.randomUUID());
-            item.setDescription("This is a test workflowitem " + i);
-            item.setName("Workflow Item " + i);
-            item.setType("wk.easyonboard.workflow.sendmail");
-            item.setParameters(ImmutableMap.of("receiver", "test@test.de"));
-            flow.getItems().add(item);
-        }
-
+        flow.getItems().add(createWorkflowItem("Send Mail", "Send a mail", "wk.easyonboard.workflow.sendmail"));
+        flow.getItems().add(createWorkflowItem("Create Jira-Account", "Creates a jira account", "wk.easyonboard.workflow.jiraccount"));
+        flow.getItems().add(createWorkflowItem("Create LDAP-Account", "Creates a ldap account", "wk.easyonboard.workflow.ldapaccount"));
         data.add(flow);
         return new DummyContext<>(data, Workflow.class);
+    }
+
+    private WorkflowItem createWorkflowItem(String name, String description, String type) {
+        WorkflowItem item = new WorkflowItem();
+        item.setId(UUID.randomUUID());
+        item.setDescription(description);
+        item.setName(name);
+        item.setType(type);
+        item.setParameters(ImmutableMap.of("receiver", "test@test.de"));
+
+        return item;
     }
 
     public Workflow read(UUID workflowId) throws IllegalAccessException, InstantiationException {
