@@ -8,6 +8,10 @@ import java.util.Map;
  */
 public abstract class DbContext {
     public abstract Map<String, Object> read(Map<String, Object> keys);
+
     public abstract List<Map<String, Object>> readAll();
+
+    public abstract List<Map<String, Object>> readMany(Map<String, Object> keys);
+
     public abstract boolean create(Map<String, Object> data);
 }

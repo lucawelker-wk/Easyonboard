@@ -1,35 +1,31 @@
 package wk.easyonboard.adminservice.controller;
 
 import wk.easyonboard.adminservice.RepositoryCache;
-import wk.easyonboard.adminservice.data.dto.Company;
-import wk.easyonboard.common.datatransfer.CompanyDTO;
+import wk.easyonboard.adminservice.data.dto.CompanyUnit;
+import wk.easyonboard.common.datatransfer.CompanyUnitDTO;
 
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
- * Created by Luca Welker on 4/26/17.
+ * Created by Luca Welker on 4/27/17.
  */
-@Path("/companies")
+@Path("/company/{companyId}")
 public class CompanyController {
+    @Path("/units")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<CompanyDTO> getCompanies() {
-        final List<Company> companies = RepositoryCache.getCompanyRepository().readAll();
+    public List<CompanyUnitDTO> getCompanyUnitsForCompany(@PathParam("companyId") UUID companyId) {
+        final List<CompanyUnit> companyUnits = RepositoryCache.getcompanyUnitRepository().readMany(companyId);
 
-        return companies.stream()
-                .map(x -> x.toServerDTO())
+        return companyUnits.stream()
+                .map(CompanyUnit::toServerDTO)
                 .collect(Collectors.toList());
-    }
-
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public boolean createCompany(CompanyDTO data) throws IllegalAccessException {
-        data.setId(UUID.randomUUID());
-        return RepositoryCache.getCompanyRepository().create(Company.fromServerDTO(data));
     }
 }

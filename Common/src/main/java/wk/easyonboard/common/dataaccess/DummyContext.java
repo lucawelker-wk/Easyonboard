@@ -3,6 +3,7 @@ package wk.easyonboard.common.dataaccess;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by Luca Welker on 4/26/17.
@@ -40,5 +41,17 @@ public class DummyContext<T> extends DbContext {
     @Override
     public boolean create(Map<String, Object> data) {
         return this.data.add(data);
+    }
+
+    @Override
+    public List<Map<String, Object>> readMany(Map<String, Object> keys) {
+        return data.stream().filter(x -> {
+            for (Map.Entry key : keys.entrySet()) {
+                if (x.containsKey(key.getKey()))
+                    if (x.get(key.getKey()) != key.getValue())
+                        return false;
+            }
+            return true;
+        }).collect(Collectors.toList());
     }
 }

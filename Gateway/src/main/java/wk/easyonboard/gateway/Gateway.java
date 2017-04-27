@@ -1,6 +1,7 @@
 package wk.easyonboard.gateway;
 
 import wk.easyonboard.common.Launchable;
+import wk.easyonboard.gateway.controller.CompaniesClientController;
 import wk.easyonboard.gateway.controller.CompanyClientController;
 import wk.easyonboard.gateway.controller.EmployeeClientController;
 import wk.easyonboard.gateway.controller.WorkflowClientController;
@@ -17,6 +18,7 @@ public class Gateway extends Launchable {
         Set<Class<?>> resources = new HashSet<>();
         resources.add(WorkflowClientController.class);
         resources.add(EmployeeClientController.class);
+        resources.add(CompaniesClientController.class);
         resources.add(CompanyClientController.class);
         return resources;
     }

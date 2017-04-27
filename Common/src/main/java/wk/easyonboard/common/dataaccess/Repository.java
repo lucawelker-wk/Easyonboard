@@ -27,9 +27,7 @@ public abstract class Repository<T> {
         throw new NotImplementedException();
     }
 
-    public List<T> readAll() {
-        final List<Map<String, Object>> data = context.readAll();
-
+    private List<T> mapListData(List<Map<String, Object>> data) {
         return data.stream()
                 .map(x -> {
                     try {
@@ -43,6 +41,16 @@ public abstract class Repository<T> {
                     }
                 })
                 .collect(Collectors.toList());
+    }
+
+    public List<T> readAll() {
+        final List<Map<String, Object>> data = context.readAll();
+        return mapListData(data);
+    }
+
+    public List<T> readMany(Map<String, Object> keys) {
+        final List<Map<String, Object>> data = context.readMany(keys);
+        return mapListData(data);
     }
 
     public boolean create(T data) throws IllegalAccessException {

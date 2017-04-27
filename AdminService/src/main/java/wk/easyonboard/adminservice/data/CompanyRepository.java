@@ -31,7 +31,7 @@ public class CompanyRepository extends Repository<Company> {
 
         Company company = new Company();
         company.setName("Wolters Kluwer");
-        company.setId(UUID.randomUUID());
+        company.setId(DemoDataConstants.WK_COMPANY_ID);
         company.setAdress(address);
 
         return new DummyContext<>(Lists.newArrayList(company), Company.class);

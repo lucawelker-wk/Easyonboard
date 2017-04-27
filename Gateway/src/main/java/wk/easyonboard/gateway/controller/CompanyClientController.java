@@ -1,40 +1,31 @@
 package wk.easyonboard.gateway.controller;
 
-import wk.easyonboard.common.datatransfer.CompanyDTO;
+import wk.easyonboard.common.datatransfer.CompanyUnitDTO;
 
-import javax.ws.rs.*;
-import javax.ws.rs.client.Entity;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.UUID;
 
 /**
- * Created by Luca Welker on 4/26/17.
+ * Created by Luca Welker on 4/27/17.
  */
-@Path("/api/companies")
+@Path("/api/company/{companyId}")
 public class CompanyClientController extends BaseClientController {
+    @Path("/units")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<CompanyDTO> getCompanies() {
+    public List<CompanyUnitDTO> getCompanyUnits(@PathParam("companyId") UUID companyId) {
         return buildAdminClient()
-                .path("companies")
+                .path("company")
+                .path(companyId.toString())
+                .path("units")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .buildGet()
-                .invoke(new GenericType<List<CompanyDTO>>() {
-                });
-    }
-
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public boolean createCompany(CompanyDTO company) {
-        Response response = buildAdminClient()
-                .path("companies")
-                .request(MediaType.APPLICATION_JSON_TYPE)
-                .buildPost(Entity.entity(company, MediaType.APPLICATION_JSON_TYPE))
-                .invoke();
-
-        return response.getStatusInfo().getStatusCode() == 200;
+                .invoke(new GenericType<List<CompanyUnitDTO>>() {});
     }
 }

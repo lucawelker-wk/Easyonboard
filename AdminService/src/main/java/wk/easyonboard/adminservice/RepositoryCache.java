@@ -1,6 +1,7 @@
 package wk.easyonboard.adminservice;
 
 import wk.easyonboard.adminservice.data.CompanyRepository;
+import wk.easyonboard.adminservice.data.CompanyUnitRepository;
 import wk.easyonboard.adminservice.data.EmployeeRepository;
 import wk.easyonboard.adminservice.data.WorkflowRepository;
 
@@ -30,5 +31,13 @@ public class RepositoryCache {
         if (companyRepository == null)
             companyRepository = new CompanyRepository();
         return companyRepository;
+    }
+
+    private static CompanyUnitRepository companyUnitRepository;
+
+    public static CompanyUnitRepository getcompanyUnitRepository() {
+        if (companyUnitRepository == null)
+            companyUnitRepository = new CompanyUnitRepository();
+        return companyUnitRepository;
     }
 }

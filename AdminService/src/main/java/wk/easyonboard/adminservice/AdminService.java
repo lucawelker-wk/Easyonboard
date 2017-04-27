@@ -1,5 +1,6 @@
 package wk.easyonboard.adminservice;
 
+import wk.easyonboard.adminservice.controller.CompaniesController;
 import wk.easyonboard.adminservice.controller.CompanyController;
 import wk.easyonboard.adminservice.controller.EmployeeController;
 import wk.easyonboard.adminservice.controller.WorkflowController;
@@ -17,8 +18,8 @@ public class AdminService extends Launchable {
         Set<Class<?>> resources = new HashSet<Class<?>>();
         resources.add(EmployeeController.class);
         resources.add(WorkflowController.class);
+        resources.add(CompaniesController.class);
         resources.add(CompanyController.class);
-
         return resources;
     }
 
