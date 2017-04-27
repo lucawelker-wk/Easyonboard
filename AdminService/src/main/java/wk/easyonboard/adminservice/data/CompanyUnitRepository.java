@@ -33,7 +33,6 @@ public class CompanyUnitRepository extends Repository<CompanyUnit> {
         unit.setId(UUID.randomUUID());
         unit.setName("Development");
         unit.setCompanyId(DemoDataConstants.WK_COMPANY_ID);
-        //unit.setCompanyId(UUID.randomUUID());
         unit.setManager(Lists.newArrayList(getDummyManager("Wurst", "Hans", "HWurst", EmployeeRole.manager),
                 getDummyManager("Draser", "Edwin", "EDraser", EmployeeRole.comanager)));
 
@@ -74,7 +73,7 @@ public class CompanyUnitRepository extends Repository<CompanyUnit> {
     }
 
     public List<CompanyUnit> readMany(UUID companyId) {
-        return super.readMany(ImmutableMap.of("CompanyId", companyId));
+        return super.readMany(ImmutableMap.of("companyId", companyId));
     }
 
     public List<CompanyUnit> readAll() {
