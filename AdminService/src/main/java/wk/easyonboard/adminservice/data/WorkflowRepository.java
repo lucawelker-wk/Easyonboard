@@ -42,7 +42,7 @@ public class WorkflowRepository extends Repository<Workflow> {
         return new DummyContext<>(data, Workflow.class);
     }
 
-    public Workflow read(UUID workflowId) {
+    public Workflow read(UUID workflowId) throws IllegalAccessException, InstantiationException {
         return read(ImmutableMap.of("Id", workflowId.toString()));
     }
 
