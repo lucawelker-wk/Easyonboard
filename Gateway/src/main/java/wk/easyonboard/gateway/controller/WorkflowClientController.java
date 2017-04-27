@@ -25,6 +25,18 @@ public class WorkflowClientController extends BaseClientController {
                 });
     }
 
+    @Path("/count")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public Integer getWorkflowCount() {
+        return buildAdminClient()
+                .path("workflows")
+                .path("count")
+                .request(MediaType.TEXT_PLAIN)
+                .buildGet()
+                .invoke(Integer.class);
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

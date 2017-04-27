@@ -7,6 +7,8 @@ import wk.easyonboard.common.datatransfer.WorkflowDTO;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -23,6 +25,13 @@ public class WorkflowController {
         return workflows.stream()
                 .map(Workflow::toServerDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Path("/count")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public Integer getWorkflowCount() {
+        return RepositoryCache.getWorkflowRepository().readAll().size();
     }
 
     @POST

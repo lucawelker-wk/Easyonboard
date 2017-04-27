@@ -48,7 +48,7 @@ public class DummyContext<T> extends DbContext {
         return data.stream().filter(x -> {
             for (Map.Entry key : keys.entrySet()) {
                 if (x.containsKey(key.getKey()))
-                    if (x.get(key.getKey()) != key.getValue())
+                    if (!x.get(key.getKey()).equals(key.getValue()))
                         return false;
             }
             return true;

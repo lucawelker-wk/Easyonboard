@@ -27,6 +27,18 @@ public class EmployeeClientController extends BaseClientController {
         return employees;
     }
 
+    @Path("count")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public Integer getEmployeeCount() {
+        return buildAdminClient()
+                .path("employees")
+                .path("count")
+                .request(MediaType.TEXT_PLAIN)
+                .buildGet()
+                .invoke(Integer.class);
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

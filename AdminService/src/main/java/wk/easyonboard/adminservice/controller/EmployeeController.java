@@ -30,4 +30,11 @@ public class EmployeeController {
         employee.setId(UUID.randomUUID());
         return RepositoryCache.getEmployeeRepository().create(Employee.fromServerDTO(employee));
     }
+
+    @Path("/count")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public Integer getEmployeeCount() {
+        return RepositoryCache.getEmployeeRepository().readAll().size();
+    }
 }

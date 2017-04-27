@@ -28,4 +28,18 @@ public class CompanyClientController extends BaseClientController {
                 .buildGet()
                 .invoke(new GenericType<List<CompanyUnitDTO>>() {});
     }
+
+    @Path("/units/count")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public Integer getCompanyUnitsCount(@PathParam("companyId") UUID companyId) {
+        return buildAdminClient()
+                .path("company")
+                .path(companyId.toString())
+                .path("units")
+                .path("count")
+                .request(MediaType.TEXT_PLAIN)
+                .buildGet()
+                .invoke(Integer.class);
+    }
 }

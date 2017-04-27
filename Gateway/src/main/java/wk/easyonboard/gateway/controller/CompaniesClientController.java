@@ -14,6 +14,20 @@ import java.util.List;
  */
 @Path("/api/companies")
 public class CompaniesClientController extends BaseClientController {
+    @Path("/count")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public Integer getCompaniesCount() {
+        final Integer invoke = buildAdminClient()
+                .path("companies")
+                .path("count")
+                .request(MediaType.TEXT_PLAIN)
+                .buildGet()
+                .invoke(Integer.class);
+
+        return invoke;
+    }
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<CompanyDTO> getCompanies() {

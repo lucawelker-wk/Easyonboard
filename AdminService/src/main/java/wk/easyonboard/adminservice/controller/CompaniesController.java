@@ -15,6 +15,13 @@ import java.util.stream.Collectors;
  */
 @Path("/companies")
 public class CompaniesController {
+    @Path("/count")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public Integer getCompaniesCount() {
+        return RepositoryCache.getCompanyRepository().readAll().size();
+    }
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<CompanyDTO> getCompanies() {

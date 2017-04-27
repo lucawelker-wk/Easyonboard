@@ -28,4 +28,11 @@ public class CompanyController {
                 .map(CompanyUnit::toServerDTO)
                 .collect(Collectors.toList());
     }
+
+    @Path("/units/count")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public Integer getCompanyUnitsCount(@PathParam("companyId") UUID companyId) {
+        return RepositoryCache.getcompanyUnitRepository().readMany(companyId).size();
+    }
 }
