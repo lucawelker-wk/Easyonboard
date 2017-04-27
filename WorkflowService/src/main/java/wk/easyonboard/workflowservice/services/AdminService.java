@@ -1,6 +1,7 @@
 package wk.easyonboard.workflowservice.services;
 
 import wk.easyonboard.common.BaseClientController;
+import wk.easyonboard.common.datatransfer.EmployeeDTO;
 import wk.easyonboard.common.datatransfer.WorkflowDTO;
 
 import javax.ws.rs.core.MediaType;
@@ -17,5 +18,14 @@ public class AdminService extends BaseClientController {
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .buildGet()
                 .invoke(WorkflowDTO.class);
+    }
+
+    public EmployeeDTO getEmployee(UUID employeeId) {
+        return buildAdminClient()
+                .path("employee")
+                .path(employeeId.toString())
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .buildGet()
+                .invoke(EmployeeDTO.class);
     }
 }
