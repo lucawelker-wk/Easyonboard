@@ -1,5 +1,9 @@
 package wk.easyonboard.common.datatransfer;
 
+import com.owlike.genson.annotation.JsonProperty;
+import wk.easyonboard.common.typadapter.LocaleDateTimeXmlTypeAdapter;
+
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -7,10 +11,12 @@ import java.util.UUID;
  * Created by Luca Welker on 4/27/17.
  */
 public class WorkflowItemStatusDTO {
-    private UUID runningWorkflowId;
-    private UUID workflowItemId;
-    private LocalDateTime dueDate;
-    private boolean success;
+    public UUID runningWorkflowId;
+    public UUID workflowItemId;
+    @JsonProperty
+    @XmlJavaTypeAdapter(LocaleDateTimeXmlTypeAdapter.class)
+    public LocalDateTime dueDate;
+    public boolean success;
 
     public UUID getRunningWorkflowId() {
         return runningWorkflowId;

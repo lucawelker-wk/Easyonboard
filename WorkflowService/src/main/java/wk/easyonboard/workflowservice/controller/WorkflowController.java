@@ -14,6 +14,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -49,6 +50,15 @@ public class WorkflowController {
         updateWorkflowItems(workflow, runningId);
 
         return runningId;
+    }
+
+    @Path("/employeeStatus/{employeeId}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public UUID getRunningWorkflowForEmployee(@PathParam("employeeId") UUID employeeId) {
+        final Optional<RunningWorkflow> first = RepositoryCache.getRunningWorkflowsRepository().getWorkflowsForEmployee(employeeId).stream().findFirst();
+
+        return first.isPresent() ? first.get().getId() : null;
     }
 
     @Path("/{workflowRunningId}/status")

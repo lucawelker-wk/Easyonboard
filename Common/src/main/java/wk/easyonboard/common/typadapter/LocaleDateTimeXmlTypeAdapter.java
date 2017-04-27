@@ -3,22 +3,18 @@ package wk.easyonboard.common.typadapter;
 import com.google.common.base.Strings;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-/**
- * Created by Luca Welker on 4/26/17.
- */
-public class LocaleDateXmlTypeAdapter extends XmlAdapter<String, LocalDate> {
+public class LocaleDateTimeXmlTypeAdapter extends XmlAdapter<String, LocalDateTime> {
     @Override
-    public String marshal(LocalDate v) {
+    public String marshal(LocalDateTime v) {
         return v.format(DateTimeFormatter.ISO_LOCAL_DATE);
     }
 
     @Override
-    public LocalDate unmarshal(String v) {
+    public LocalDateTime unmarshal(String v) {
         if (Strings.isNullOrEmpty(v)) {
             return null;
         } else {
@@ -27,7 +23,7 @@ public class LocaleDateXmlTypeAdapter extends XmlAdapter<String, LocalDate> {
             DateTimeFormatter formatter = v.contains("T") ? DateTimeFormatter.ISO_LOCAL_DATE_TIME : DateTimeFormatter.ISO_LOCAL_DATE;
 
             try {
-                return LocalDate.parse(v, formatter);
+                return LocalDateTime.parse(v, formatter);
             } catch (DateTimeParseException e) {
             }
         }
@@ -35,4 +31,3 @@ public class LocaleDateXmlTypeAdapter extends XmlAdapter<String, LocalDate> {
         return null;
     }
 }
-

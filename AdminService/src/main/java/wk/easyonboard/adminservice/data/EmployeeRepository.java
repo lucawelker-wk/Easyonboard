@@ -75,7 +75,7 @@ public class EmployeeRepository extends Repository<Employee> {
     }
 
     public Employee read(UUID userId) throws IllegalAccessException, InstantiationException {
-        return read(ImmutableMap.of("id", userId));
+        return read(ImmutableMap.of("Id", userId));
     }
 
     public List<Employee> readAll() {

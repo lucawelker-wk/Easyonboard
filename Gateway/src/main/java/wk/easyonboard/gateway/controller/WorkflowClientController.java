@@ -30,10 +30,22 @@ public class WorkflowClientController extends BaseClientController {
                 .invoke(UUID.class);
     }
 
+    @Path("/employeeStatus/{employeeId}")
+    @GET
+    public UUID getWorkflowRunningIdForEmployee(@PathParam("employeeId") UUID employeeId) {
+        return buildWorkflowClient()
+                .path("workflow")
+                .path("employeeStatus")
+                .path(employeeId.toString())
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .buildGet()
+                .invoke(UUID.class);
+    }
+
     @GET
     @Path("/{workflowRunningId}/status")
     public List<WorkflowItemStatusDTO> getWorkflowRunningStatus(@PathParam("workflowRunningId") UUID workflowRunningId) {
-        return buildWorkflowClient()
+        final List<WorkflowItemStatusDTO> invoke = buildWorkflowClient()
                 .path("workflow")
                 .path(workflowRunningId.toString())
                 .path("status")
@@ -41,5 +53,7 @@ public class WorkflowClientController extends BaseClientController {
                 .buildGet()
                 .invoke(new GenericType<List<WorkflowItemStatusDTO>>() {
                 });
+
+        return invoke;
     }
 }
