@@ -47,6 +47,8 @@ public class EmployeeRepository extends Repository<Employee> {
             employee.setEntersOn(LocalDate.now().minusYears(5 * i));
             employee.setLeavesOn(LocalDate.now().plusYears(i * 10));
             employee.setCompanyUnitId(i % 2 == 0 ? DemoDataConstants.BUSINESSANALYST_UNIT_ID : DemoDataConstants.DEVELOPMENT_UNIT_ID);
+            employee.setMentorId(i % 2 == 0 ? i % 2 != 0 ? DemoDataConstants.MANAGER_KATJA_REMBOLD : DemoDataConstants.MANAGER_STEFAN_SCHATZ :
+                    i % 2 != 0 ? DemoDataConstants.MANAGER_HANS_WURST : DemoDataConstants.MANAGER_EDWIN_DRASER);
 
             employees.add(employee);
         }
