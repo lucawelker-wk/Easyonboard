@@ -6,8 +6,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Luca Welker on 4/26/17.
@@ -40,13 +40,11 @@ public class WorkflowsClientController extends BaseClientController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public boolean createWorkflow(WorkflowDTO workflow) {
-        Response response = buildAdminClient()
+    public UUID createWorkflow(WorkflowDTO workflow) {
+        return buildAdminClient()
                 .path("workflows")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .buildPost(Entity.entity(workflow, MediaType.APPLICATION_JSON_TYPE))
-                .invoke();
-
-        return response.getStatusInfo().getStatusCode() == 200;
+                .invoke(UUID.class);
     }
 }

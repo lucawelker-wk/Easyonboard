@@ -26,9 +26,11 @@ public class EmployeeController {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean createEmployee(EmployeeDTO employee) throws IllegalAccessException {
+    @Produces(MediaType.APPLICATION_JSON)
+    public UUID createEmployee(EmployeeDTO employee) throws IllegalAccessException {
         employee.setId(UUID.randomUUID());
-        return RepositoryCache.getEmployeeRepository().create(Employee.fromServerDTO(employee));
+        RepositoryCache.getEmployeeRepository().create(Employee.fromServerDTO(employee));
+        return employee.getId();
     }
 
     @Path("/count")

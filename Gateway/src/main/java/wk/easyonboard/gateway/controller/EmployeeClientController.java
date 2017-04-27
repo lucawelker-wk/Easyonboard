@@ -6,8 +6,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Luca Welker on 4/26/17.
@@ -42,13 +42,11 @@ public class EmployeeClientController extends BaseClientController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public boolean createEmployee(EmployeeDTO data) {
-        final Response employees = buildAdminClient()
+    public UUID createEmployee(EmployeeDTO data) {
+        return buildAdminClient()
                 .path("employees")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .buildPost(Entity.entity(data, MediaType.APPLICATION_JSON_TYPE))
-                .invoke();
-
-        return employees.getStatusInfo().getStatusCode() == 200;
+                .invoke(UUID.class);
     }
 }

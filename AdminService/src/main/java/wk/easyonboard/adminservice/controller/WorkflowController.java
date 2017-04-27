@@ -35,8 +35,10 @@ public class WorkflowController {
     }
 
     @POST
-    public boolean createWorkflow(WorkflowDTO workflow) throws IllegalAccessException {
+    public UUID createWorkflow(WorkflowDTO workflow) throws IllegalAccessException {
         workflow.setId(UUID.randomUUID());
-        return RepositoryCache.getWorkflowRepository().create(Workflow.fromServerDTO(workflow));
+        RepositoryCache.getWorkflowRepository().create(Workflow.fromServerDTO(workflow));
+
+        return workflow.getId();
     }
 }

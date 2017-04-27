@@ -35,9 +35,11 @@ public class CompaniesController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public boolean createCompany(CompanyDTO data) throws IllegalAccessException {
+    public UUID createCompany(CompanyDTO data) throws IllegalAccessException {
         data.setId(UUID.randomUUID());
-        return RepositoryCache.getCompanyRepository().create(Company.fromServerDTO(data));
+        RepositoryCache.getCompanyRepository().create(Company.fromServerDTO(data));
+
+        return data.getId();
     }
 
 
