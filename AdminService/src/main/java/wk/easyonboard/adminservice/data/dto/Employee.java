@@ -12,16 +12,18 @@ import java.util.UUID;
  */
 public class Employee {
     public UUID Id;
-    public String LastName;
-    public String FirstName;
-    public Address EmployeeAddress;
-    public EmployeeRole EmployeeRole;
+    public UUID companyUnitId;
+    public String lastName;
+    public String firstName;
+    public Address employeeAddress;
+    public EmployeeRole employeeRole;
     public String Username;
-    public String Email;
-    public UserRole UserRole;
+    public String email;
+    public UserRole userRole;
     public LocalDate entersOn;
     public LocalDate leavesOn;
     public String avatarUrl;
+    public UUID mentorId;
 
     public LocalDate getEntersOn() {
         return entersOn;
@@ -56,35 +58,35 @@ public class Employee {
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        this.LastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        this.FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public EmployeeRole getEmployeeRole() {
-        return EmployeeRole;
+        return employeeRole;
     }
 
     public void setEmployeeRole(EmployeeRole employeeRole) {
-        this.EmployeeRole = employeeRole;
+        this.employeeRole = employeeRole;
     }
 
     public Address getEmployeeAddress() {
-        return EmployeeAddress;
+        return employeeAddress;
     }
 
     public void setEmployeeAddress(Address employeeAddress) {
-        this.EmployeeAddress = employeeAddress;
+        this.employeeAddress = employeeAddress;
     }
 
     public String getUsername() {
@@ -96,19 +98,35 @@ public class Employee {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        this.Email = email;
+        this.email = email;
     }
 
     public UserRole getUserRole() {
-        return UserRole;
+        return userRole;
     }
 
     public void setUserRole(UserRole userRole) {
-        this.UserRole = userRole;
+        this.userRole = userRole;
+    }
+
+    public UUID getMentorId() {
+        return mentorId;
+    }
+
+    public void setMentorId(UUID mentorId) {
+        this.mentorId = mentorId;
+    }
+
+    public UUID getCompanyUnitId() {
+        return companyUnitId;
+    }
+
+    public void setCompanyUnitId(UUID companyUnitId) {
+        this.companyUnitId = companyUnitId;
     }
 
     public static final Employee fromServerDTO(EmployeeDTO data) {
@@ -124,6 +142,8 @@ public class Employee {
         employee.setLeavesOn(data.getLeavesOn());
         employee.setEntersOn(data.getEntersOn());
         employee.setAvatarUrl(data.getAvatarUrl());
+        employee.setMentorId(data.getMentorId());
+        employee.setCompanyUnitId(data.getCompanyUnitId());
 
         return employee;
     }
@@ -142,6 +162,8 @@ public class Employee {
         result.setLeavesOn(this.getLeavesOn());
         result.setEntersOn(this.getEntersOn());
         result.setAvatarUrl(this.getAvatarUrl());
+        result.setMentorId(this.getMentorId());
+        result.setCompanyUnitId(this.getCompanyUnitId());
 
         return result;
     }

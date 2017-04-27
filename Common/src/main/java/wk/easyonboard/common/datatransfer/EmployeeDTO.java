@@ -27,6 +27,7 @@ public class EmployeeDTO {
     @XmlJavaTypeAdapter(LocaleDateXmlTypeAdapter.class)
     private LocalDate leavesOn;
     private String avatarUrl;
+    private UUID mentorId;
 
     public UUID getId() {
         return id;
@@ -122,6 +123,14 @@ public class EmployeeDTO {
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
+    }
+
+    public UUID getMentorId() {
+        return mentorId;
+    }
+
+    public void setMentorId(UUID mentorId) {
+        this.mentorId = mentorId;
     }
 }
 

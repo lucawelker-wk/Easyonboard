@@ -7,4 +7,6 @@ import java.util.UUID;
  */
 public class DemoDataConstants {
     public final static UUID WK_COMPANY_ID = UUID.fromString("a13133cc-140f-47c7-8907-27c4a89389ab");
+    public final static UUID DEVELOPMENT_UNIT_ID = UUID.fromString("64561120-fbc7-4b2e-b158-2a0f58356dc4");
+    public final static UUID BUSINESSANALYST_UNIT_ID = UUID.fromString("edb01fe1-a88a-4939-b072-b1492ffe1a61");
 }

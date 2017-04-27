@@ -1,9 +1,6 @@
 package wk.easyonboard.adminservice;
 
-import wk.easyonboard.adminservice.controller.CompaniesController;
-import wk.easyonboard.adminservice.controller.CompanyController;
-import wk.easyonboard.adminservice.controller.EmployeeController;
-import wk.easyonboard.adminservice.controller.WorkflowController;
+import wk.easyonboard.adminservice.controller.*;
 import wk.easyonboard.common.Launchable;
 import wk.easyonboard.common.ServiceConstants;
 
@@ -16,10 +13,12 @@ import java.util.Set;
 public class AdminService extends Launchable {
     protected Set<Class<?>> provideResources() {
         Set<Class<?>> resources = new HashSet<Class<?>>();
-        resources.add(EmployeeController.class);
+        resources.add(EmployeesController.class);
         resources.add(WorkflowController.class);
         resources.add(CompaniesController.class);
         resources.add(CompanyController.class);
+        resources.add(CompanyUnitController.class);
+        resources.add(EmployeeController.class);
         return resources;
     }
 

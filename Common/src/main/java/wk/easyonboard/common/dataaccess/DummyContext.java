@@ -3,6 +3,7 @@ package wk.easyonboard.common.dataaccess;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -31,7 +32,17 @@ public class DummyContext<T> extends DbContext {
     }
 
     public Map<String, Object> read(Map<String, Object> keys) {
-        return null;
+        final Optional<Map<String, Object>> first = data.stream()
+                .filter(x -> {
+                    for (Map.Entry key : keys.entrySet()) {
+                        if (x.containsKey(key.getKey()))
+                            if (!x.get(key.getKey()).equals(key.getValue()))
+                                return false;
+                    }
+                    return true;
+                }).findFirst();
+
+        return first.isPresent() ? first.get() : null;
     }
 
     public List<Map<String, Object>> readAll() {

@@ -1,6 +1,6 @@
 package wk.easyonboard.gateway.controller;
 
-import wk.easyonboard.common.datatransfer.EmployeeDTO;
+import wk.easyonboard.common.datatransfer.CompanyUnitDTO;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -12,16 +12,17 @@ import java.util.UUID;
 /**
  * Created by Luca Welker on 4/27/17.
  */
-@Path("/api/employee/{employeeId}")
-public class EmployeeClientController extends BaseClientController {
+@Path("/api/company/unit/{companyUnitId}")
+public class CompanyUnitClientController extends BaseClientController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public EmployeeDTO getEmployee(@PathParam("employeeId") UUID employeeId) {
+    public CompanyUnitDTO getCompanyUnit(@PathParam("companyUnitId")UUID companyUnitId) {
         return buildAdminClient()
-                .path("employee")
-                .path(employeeId.toString())
+                .path("company")
+                .path("unit")
+                .path(companyUnitId.toString())
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .buildGet()
-                .invoke(EmployeeDTO.class);
+                .invoke(CompanyUnitDTO.class);
     }
 }

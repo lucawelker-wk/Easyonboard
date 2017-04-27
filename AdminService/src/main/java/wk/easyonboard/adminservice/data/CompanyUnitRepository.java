@@ -30,7 +30,7 @@ public class CompanyUnitRepository extends Repository<CompanyUnit> {
         List<CompanyUnit> units = new ArrayList<>();
 
         CompanyUnit unit = new CompanyUnit();
-        unit.setId(UUID.randomUUID());
+        unit.setId(DemoDataConstants.DEVELOPMENT_UNIT_ID);
         unit.setName("Development");
         unit.setCompanyId(DemoDataConstants.WK_COMPANY_ID);
         unit.setManager(Lists.newArrayList(getDummyManager("Wurst", "Hans", "HWurst", EmployeeRole.manager),
@@ -39,7 +39,7 @@ public class CompanyUnitRepository extends Repository<CompanyUnit> {
         units.add(unit);
 
         unit = new CompanyUnit();
-        unit.setId(UUID.randomUUID());
+        unit.setId(DemoDataConstants.BUSINESSANALYST_UNIT_ID);
         unit.setName("Business Analysts");
         unit.setCompanyId(DemoDataConstants.WK_COMPANY_ID);
         unit.setManager(Lists.newArrayList(getDummyManager("Rembold", "Katja", "KRembold", EmployeeRole.manager),

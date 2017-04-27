@@ -46,21 +46,10 @@ public class EmployeeRepository extends Repository<Employee> {
             employee.setUserRole(UserRole.user);
             employee.setEntersOn(LocalDate.now().minusYears(5 * i));
             employee.setLeavesOn(LocalDate.now().plusYears(i * 10));
+            employee.setCompanyUnitId(i % 2 == 0 ? DemoDataConstants.BUSINESSANALYST_UNIT_ID : DemoDataConstants.DEVELOPMENT_UNIT_ID);
 
             employees.add(employee);
         }
-
-        Employee manager = new Employee();
-        manager.setId(UUID.randomUUID());
-        manager.setFirstName("Hans");
-        manager.setLastName("Manager");
-        manager.setUsername("hans.manager");
-        manager.setEmail(String.format("klaus.manager@easyonboard.de"));
-        manager.setEmployeeRole(EmployeeRole.manager);
-        manager.setEmployeeAddress(address);
-        manager.setUserRole(UserRole.admin);
-        manager.setEntersOn(LocalDate.of(1990, 01, 15));
-        employees.add(manager);
 
         Employee notEnteredYet = new Employee();
         notEnteredYet.setId(UUID.randomUUID());
@@ -72,13 +61,14 @@ public class EmployeeRepository extends Repository<Employee> {
         notEnteredYet.setEmployeeAddress(address);
         notEnteredYet.setUserRole(UserRole.user);
         notEnteredYet.setEntersOn(LocalDate.of(2017, 05, 01));
+        notEnteredYet.setCompanyUnitId(DemoDataConstants.DEVELOPMENT_UNIT_ID);
         employees.add(notEnteredYet);
 
         return new DummyContext<>(employees, Employee.class);
     }
 
-    public Employee read(UUID userId) {
-        return read(ImmutableMap.of("Id", userId.toString()));
+    public Employee read(UUID userId) throws IllegalAccessException, InstantiationException {
+        return read(ImmutableMap.of("id", userId));
     }
 
     public List<Employee> readAll() {

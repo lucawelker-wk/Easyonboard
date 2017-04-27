@@ -22,9 +22,8 @@ public abstract class Repository<T> {
 
     protected abstract DbContext initializeContext();
 
-    public T read(Map<String, Object> keys) {
-
-        throw new NotImplementedException();
+    public T read(Map<String, Object> keys) throws InstantiationException, IllegalAccessException {
+        return mapper.mapToObject(context.read(keys));
     }
 
     private List<T> mapListData(List<Map<String, Object>> data) {
