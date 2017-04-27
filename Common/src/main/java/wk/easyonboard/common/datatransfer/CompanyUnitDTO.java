@@ -10,7 +10,7 @@ public class CompanyUnitDTO {
     private UUID id;
     private String name;
     private UUID companyId;
-    private List<EmployeeDTO> manager;
+    private List<UUID> manager;
 
     public UUID getId() {
         return id;
@@ -36,11 +36,11 @@ public class CompanyUnitDTO {
         this.companyId = companyId;
     }
 
-    public List<EmployeeDTO> getManager() {
+    public List<UUID> getManager() {
         return manager;
     }
 
-    public void setManager(List<EmployeeDTO> manager) {
+    public void setManager(List<UUID> manager) {
         this.manager = manager;
     }
 }

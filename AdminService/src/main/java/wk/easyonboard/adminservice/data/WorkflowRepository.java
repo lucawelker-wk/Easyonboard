@@ -43,7 +43,7 @@ public class WorkflowRepository extends Repository<Workflow> {
     }
 
     public Workflow read(UUID workflowId) throws IllegalAccessException, InstantiationException {
-        return read(ImmutableMap.of("Id", workflowId.toString()));
+        return read(ImmutableMap.of("id", workflowId));
     }
 
     public List<Workflow> readAll() {

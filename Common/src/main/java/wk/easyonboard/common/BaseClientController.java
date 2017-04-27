@@ -1,8 +1,7 @@
-package wk.easyonboard.gateway.controller;
+package wk.easyonboard.common;
 
 import com.owlike.genson.ext.jaxrs.GensonJsonConverter;
 import org.glassfish.jersey.client.ClientConfig;
-import wk.easyonboard.common.ServiceConstants;
 
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;

@@ -42,7 +42,7 @@ public class CompanyRepository extends Repository<Company> {
     }
 
     public Company read(UUID id) throws IllegalAccessException, InstantiationException {
-        return super.read(ImmutableMap.of("Id", id));
+        return super.read(ImmutableMap.of("id", id));
     }
 
     public boolean create(Company data) throws IllegalAccessException {

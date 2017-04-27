@@ -1,5 +1,6 @@
 package wk.easyonboard.gateway.controller;
 
+import wk.easyonboard.common.BaseClientController;
 import wk.easyonboard.common.datatransfer.CompanyUnitDTO;
 
 import javax.ws.rs.GET;

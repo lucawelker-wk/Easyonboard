@@ -14,11 +14,12 @@ public class AdminService extends Launchable {
     protected Set<Class<?>> provideResources() {
         Set<Class<?>> resources = new HashSet<Class<?>>();
         resources.add(EmployeesController.class);
-        resources.add(WorkflowController.class);
+        resources.add(WorkflowsController.class);
         resources.add(CompaniesController.class);
         resources.add(CompanyController.class);
         resources.add(CompanyUnitController.class);
         resources.add(EmployeeController.class);
+        resources.add(WorkflowController.class);
         return resources;
     }
 

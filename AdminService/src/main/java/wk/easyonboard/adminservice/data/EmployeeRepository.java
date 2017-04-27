@@ -1,6 +1,7 @@
 package wk.easyonboard.adminservice.data;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import wk.easyonboard.adminservice.data.dto.Address;
 import wk.easyonboard.adminservice.data.dto.Employee;
 import wk.easyonboard.common.dataaccess.DbContext;
@@ -34,39 +35,43 @@ public class EmployeeRepository extends Repository<Employee> {
         address.setStreet("Pforzheimerstraße 46/1");
         address.setZipCode("75015");
 
-        for (int i = 1; i <= 10; ++i) {
-            final Employee employee = new Employee();
-            employee.setId(UUID.randomUUID());
-            employee.setFirstName("Firstname " + i);
-            employee.setLastName("Lastname " + i);
-            employee.setUsername("Username " + i);
-            employee.setEmail(String.format("user%s@easyonboard.de", i));
-            employee.setEmployeeRole(EmployeeRole.employee);
-            employee.setEmployeeAddress(address);
-            employee.setUserRole(UserRole.user);
-            employee.setEntersOn(LocalDate.now().minusYears(5 * i));
-            employee.setLeavesOn(LocalDate.now().plusYears(i * 10));
-            employee.setCompanyUnitId(i % 2 == 0 ? DemoDataConstants.BUSINESSANALYST_UNIT_ID : DemoDataConstants.DEVELOPMENT_UNIT_ID);
-            employee.setMentorId(i % 2 == 0 ? i % 2 != 0 ? DemoDataConstants.MANAGER_KATJA_REMBOLD : DemoDataConstants.MANAGER_STEFAN_SCHATZ :
-                    i % 2 != 0 ? DemoDataConstants.MANAGER_HANS_WURST : DemoDataConstants.MANAGER_EDWIN_DRASER);
+        employees.addAll(Lists.newArrayList(getDummyEmployee(DemoDataConstants.MANAGER_DAVID_LEYENDECKER, LocalDate.of(2000, 1, 1), "Leyendecker", "David", "david.leyendecker", EmployeeRole.comanager,
+                DemoDataConstants.DEVELOPMENT_UNIT_ID),
+                getDummyEmployee(DemoDataConstants.MANAGER_EDWIN_DRASER, LocalDate.of(1999, 5, 1), "Draser", "Edwin", "edwin.draser", EmployeeRole.manager,
+                        DemoDataConstants.DEVELOPMENT_UNIT_ID)));
 
-            employees.add(employee);
-        }
+        employees.addAll(Lists.newArrayList(getDummyEmployee(DemoDataConstants.MANAGER_KATJA_REMBOLD, LocalDate.of(2001, 6, 1), "Rembold", "Katja", "katja.rembold", EmployeeRole.manager,
+                DemoDataConstants.BUSINESSANALYST_UNIT_ID),
+                getDummyEmployee(DemoDataConstants.MANAGER_STEFAN_SCHATZ, LocalDate.of(1998, 1, 1), "Schatz", "Stefan", "stefan.schatz", EmployeeRole.comanager,
+                        DemoDataConstants.BUSINESSANALYST_UNIT_ID)));
 
-        Employee notEnteredYet = new Employee();
-        notEnteredYet.setId(UUID.randomUUID());
-        notEnteredYet.setFirstName("Klaus");
-        notEnteredYet.setLastName("NotEntered");
-        notEnteredYet.setUsername("klaus.notentered");
-        notEnteredYet.setEmail(String.format("klaus.notentered@easyonboard.de"));
-        notEnteredYet.setEmployeeRole(EmployeeRole.employee);
-        notEnteredYet.setEmployeeAddress(address);
-        notEnteredYet.setUserRole(UserRole.user);
-        notEnteredYet.setEntersOn(LocalDate.of(2017, 05, 01));
-        notEnteredYet.setCompanyUnitId(DemoDataConstants.DEVELOPMENT_UNIT_ID);
-        employees.add(notEnteredYet);
+        employees.add(getDummyEmployee(DemoDataConstants.EMPLOYEE_KLAUS_NOTENTERED, LocalDate.of(2017, 5, 1), "Welker", "Luca",
+                "luca.welker", EmployeeRole.employee, DemoDataConstants.DEVELOPMENT_UNIT_ID));
 
         return new DummyContext<>(employees, Employee.class);
+    }
+
+    private Employee getDummyEmployee(UUID id, LocalDate entersOn, String name, String firstName, String username, EmployeeRole role, UUID companyUnitId) {
+        Employee emp = new Employee();
+        emp.setEntersOn(entersOn);
+        emp.setUserRole(UserRole.user);
+        emp.setUsername(username);
+        emp.setLastName(name);
+        emp.setFirstName(firstName);
+        emp.setId(id);
+        emp.setEmployeeRole(role);
+        emp.setEmail(String.format("%s.%s@easyonboard.de", firstName, name));
+        emp.setCompanyUnitId(companyUnitId);
+
+        Address address = new Address();
+        address.setZipCode("75015");
+        address.setStreet("Pforzheimerstraße 46/1");
+        address.setCity("Bretten");
+        address.setState("BW");
+        address.setCountry("Germany");
+
+        emp.setEmployeeAddress(address);
+        return emp;
     }
 
     public Employee read(UUID userId) throws IllegalAccessException, InstantiationException {

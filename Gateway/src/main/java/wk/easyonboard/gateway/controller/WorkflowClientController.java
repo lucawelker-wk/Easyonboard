@@ -1,5 +1,7 @@
 package wk.easyonboard.gateway.controller;
 
+import wk.easyonboard.common.BaseClientController;
+
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;

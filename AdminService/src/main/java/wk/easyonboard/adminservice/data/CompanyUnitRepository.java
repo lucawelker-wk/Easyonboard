@@ -33,8 +33,7 @@ public class CompanyUnitRepository extends Repository<CompanyUnit> {
         unit.setId(DemoDataConstants.DEVELOPMENT_UNIT_ID);
         unit.setName("Development");
         unit.setCompanyId(DemoDataConstants.WK_COMPANY_ID);
-        unit.setManager(Lists.newArrayList(getDummyManager(DemoDataConstants.MANAGER_HANS_WURST, "Wurst", "Hans", "HWurst", EmployeeRole.manager),
-                getDummyManager(DemoDataConstants.MANAGER_EDWIN_DRASER, "Draser", "Edwin", "EDraser", EmployeeRole.comanager)));
+        unit.setManager(Lists.newArrayList(DemoDataConstants.MANAGER_DAVID_LEYENDECKER, DemoDataConstants.MANAGER_EDWIN_DRASER));
 
         units.add(unit);
 
@@ -42,8 +41,7 @@ public class CompanyUnitRepository extends Repository<CompanyUnit> {
         unit.setId(DemoDataConstants.BUSINESSANALYST_UNIT_ID);
         unit.setName("Business Analysts");
         unit.setCompanyId(DemoDataConstants.WK_COMPANY_ID);
-        unit.setManager(Lists.newArrayList(getDummyManager(DemoDataConstants.MANAGER_KATJA_REMBOLD, "Rembold", "Katja", "KRembold", EmployeeRole.manager),
-                getDummyManager(DemoDataConstants.MANAGER_STEFAN_SCHATZ, "Schatz", "Stefan", "SSchatz", EmployeeRole.comanager)));
+        unit.setManager(Lists.newArrayList(DemoDataConstants.MANAGER_KATJA_REMBOLD, DemoDataConstants.MANAGER_STEFAN_SCHATZ));
 
         units.add(unit);
 
