@@ -71,7 +71,8 @@ public class WorkflowController {
                 .map(x -> {
                     WorkflowItemStatusDTO status = new WorkflowItemStatusDTO();
                     status.setRunningWorkflowId(workflowRunningId);
-                    status.setWorkflowItemId(x.getRunningWorkflowId());
+                    status.setWorkflowItemId(x.getWorkflowItemId());
+                    status.setOriginalWorkflowId(x.getWorkflowId());
                     status.setDueDate(x.getDueDate());
                     status.setSuccess(x.getSuccess());
 
@@ -84,6 +85,7 @@ public class WorkflowController {
         for (WorkflowItemDTO item : workflow.getItems()) {
             RunningWorkflowItem runningItem = new RunningWorkflowItem();
             runningItem.setId(UUID.randomUUID());
+            runningItem.setWorkflowId(workflow.getId());
             runningItem.setWorkflowItemId(item.getId());
             runningItem.setRunningWorkflowId(runningId);
             if (first) {

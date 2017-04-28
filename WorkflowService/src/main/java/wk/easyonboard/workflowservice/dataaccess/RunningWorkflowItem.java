@@ -10,6 +10,7 @@ public class RunningWorkflowItem {
     public UUID id;
     public UUID runningWorkflowId;
     public UUID workflowId;
+    public UUID workflowItemId;
     public LocalDateTime dueDate;
     public boolean success;
 
@@ -29,6 +30,22 @@ public class RunningWorkflowItem {
         this.runningWorkflowId = runningWorkflowId;
     }
 
+    public UUID getWorkflowId() {
+        return workflowId;
+    }
+
+    public void setWorkflowId(UUID workflowId) {
+        this.workflowId = workflowId;
+    }
+
+    public UUID getWorkflowItemId() {
+        return workflowItemId;
+    }
+
+    public void setWorkflowItemId(UUID workflowItemId) {
+        this.workflowItemId = workflowItemId;
+    }
+
     public LocalDateTime getDueDate() {
         return dueDate;
     }
@@ -43,13 +60,5 @@ public class RunningWorkflowItem {
 
     public void setSuccess(boolean success) {
         this.success = success;
-    }
-
-    public UUID getWorkflowId() {
-        return workflowId;
-    }
-
-    public void setWorkflowItemId(UUID workflowId) {
-        this.workflowId = workflowId;
     }
 }

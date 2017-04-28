@@ -1,6 +1,7 @@
 package wk.easyonboard.gateway.controller;
 
 import wk.easyonboard.common.BaseClientController;
+import wk.easyonboard.common.datatransfer.WorkflowDTO;
 import wk.easyonboard.common.datatransfer.WorkflowItemStatusDTO;
 
 import javax.ws.rs.GET;
@@ -55,5 +56,16 @@ public class WorkflowClientController extends BaseClientController {
                 });
 
         return invoke;
+    }
+
+    @GET
+    @Path("/{workflowId}")
+    public WorkflowDTO getWorkflow(@PathParam("workflowId") UUID workflowId) {
+        return buildAdminClient()
+                .path("workflow")
+                .path(workflowId.toString())
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .buildGet()
+                .invoke(WorkflowDTO.class);
     }
 }

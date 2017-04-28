@@ -11,12 +11,13 @@ import java.util.UUID;
  * Created by Luca Welker on 4/27/17.
  */
 public class WorkflowItemStatusDTO {
-    public UUID runningWorkflowId;
-    public UUID workflowItemId;
+    private UUID runningWorkflowId;
+    private UUID originalWorkflowId;
+    private UUID workflowItemId;
     @JsonProperty
     @XmlJavaTypeAdapter(LocaleDateTimeXmlTypeAdapter.class)
-    public LocalDateTime dueDate;
-    public boolean success;
+    private LocalDateTime dueDate;
+    private boolean success;
 
     public UUID getRunningWorkflowId() {
         return runningWorkflowId;
@@ -24,6 +25,14 @@ public class WorkflowItemStatusDTO {
 
     public void setRunningWorkflowId(UUID runningWorkflowId) {
         this.runningWorkflowId = runningWorkflowId;
+    }
+
+    public UUID getOriginalWorkflowId() {
+        return originalWorkflowId;
+    }
+
+    public void setOriginalWorkflowId(UUID originalWorkflowId) {
+        this.originalWorkflowId = originalWorkflowId;
     }
 
     public UUID getWorkflowItemId() {
