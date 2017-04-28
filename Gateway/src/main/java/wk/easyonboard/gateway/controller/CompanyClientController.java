@@ -1,5 +1,7 @@
 package wk.easyonboard.gateway.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import wk.easyonboard.common.BaseClientController;
 import wk.easyonboard.common.datatransfer.CompanyUnitDTO;
 
@@ -15,8 +17,11 @@ import java.util.UUID;
 /**
  * Created by Luca Welker on 4/27/17.
  */
+@Api(value = "/api/company/{companyId}", description = "Access to companies")
 @Path("/api/company/{companyId}")
 public class CompanyClientController extends BaseClientController {
+
+    @ApiOperation(value = "Get all company units", notes = "Returns all company units for {companyId}", response = CompanyUnitDTO.class)
     @Path("/units")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -27,9 +32,11 @@ public class CompanyClientController extends BaseClientController {
                 .path("units")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .buildGet()
-                .invoke(new GenericType<List<CompanyUnitDTO>>() {});
+                .invoke(new GenericType<List<CompanyUnitDTO>>() {
+                });
     }
 
+    @ApiOperation(value = "Gets companyunit count", notes = "Returns count of all company units for {companyId}", response = Integer.class)
     @Path("/units/count")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
