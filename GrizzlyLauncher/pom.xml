@@ -14,6 +14,10 @@
     <artifactId>grizzlylauncher</artifactId>
     <version>${wk.easyonboard.version}</version>
 
+    <properties>
+        <swagger.version>1.5.13</swagger.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>wk.easyonboard</groupId>
@@ -29,6 +33,26 @@
             <groupId>wk.easyonboard</groupId>
             <artifactId>workflowservice</artifactId>
             <version>${wk.easyonboard.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-jersey2-jaxrs</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.grizzly</groupId>
+            <artifactId>grizzly-http-servlet</artifactId>
+            <version>2.3.30</version>
         </dependency>
     </dependencies>
 

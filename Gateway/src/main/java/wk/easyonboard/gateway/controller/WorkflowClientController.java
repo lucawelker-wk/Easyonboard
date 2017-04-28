@@ -1,5 +1,7 @@
 package wk.easyonboard.gateway.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import wk.easyonboard.common.BaseClientController;
 import wk.easyonboard.common.datatransfer.WorkflowDTO;
 import wk.easyonboard.common.datatransfer.WorkflowItemStatusDTO;
@@ -16,8 +18,10 @@ import java.util.UUID;
 /**
  * Created by Luca Welker on 4/26/17.
  */
+@Api(value = "/api/workflow", description = "Access to a workflow")
 @Path("/api/workflow")
 public class WorkflowClientController extends BaseClientController {
+    @ApiOperation(value = "Start new workflow", notes = "Starts a workflow based on a workflow template. Returns UUID of the running task", response = UUID.class)
     @POST
     @Path("/{workflowId}/start/{employeeId}")
     public UUID startWorkflow(@PathParam("workflowId") UUID workflowId, @PathParam("employeeId") UUID employeeId) {
